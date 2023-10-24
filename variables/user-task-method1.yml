@@ -1,0 +1,40 @@
+---
+- name: mult user creation
+  hosts: all
+#  vars:
+#    users:
+#      user1:
+#        user_name: kratos
+#        user_id: 67789
+#      user2:
+#        user_name: zeus
+#        user_id: 67790
+#      user3:
+#        user_name: prometheus
+#        user_id: 67791
+  vars_files:
+    - variable-store.yml
+    - secret_pass.yml
+  tasks:
+  - name: first user created
+    user:
+      name: "{{ users.user1.user_name }}"
+      uid: "{{ users.user1.user_id }}"
+      state: "{{ stat }}"
+      password: "{{ pass | password_hash('sha512')  }}"
+
+  - name: second  user created
+    user:
+      name: "{{ users.user2.user_name }}"
+      uid: "{{ users.user2.user_id }}"
+      state: "{{ stat }}"
+      password: "{{ pass | password_hash('sha512')  }}"
+
+  - name: first user created
+    user:
+      name: "{{ users.user3.user_name }}"
+      uid: "{{ users.user3.user_id }}"
+      state: "{{ stat }}"
+      password: "{{ pass | password_hash('sha512')  }}"
+
+...

@@ -1,0 +1,14 @@
+---
+- name: selinux tags
+  hosts: all
+  remote_user: devops
+  become: true
+  tasks:
+  - name: selinux using file module
+    file:
+      path: /home/devops/users.txt
+      seuser: _default
+      serole: _default
+      setype: _default
+      selevel: _default
+

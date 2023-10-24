@@ -1,0 +1,17 @@
+---
+- name: Repository Configuration
+  hosts: all
+  tasks:
+  - name: Yum configuration
+    yum_repository:
+      file: "{{ item }}_local"
+      name: "{{ item }}"
+      description: this is a {{ item }}  custom repository
+      baseurl: http://192.168.253.157/repo/{{ item }}
+      enabled: yes
+      gpgcheck: yes
+      state: present
+     
+    loop:
+      - AppStream
+      - BaseOS

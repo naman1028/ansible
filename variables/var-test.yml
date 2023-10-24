@@ -1,0 +1,10 @@
+---
+- name: create a user
+  hosts: servers
+  tasks:
+  - name: user  create
+    user:
+      name: "{{  user }}"
+      state: absent
+
+...

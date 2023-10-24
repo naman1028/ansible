@@ -1,0 +1,6 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.253.156	        ansible-ctrlnode.example.com	ansible-ctrlnode
+192.168.253.157	        mngnode1.example.com	mngnode1
+192.168.253.158 	mngnode2.example.com	mngnode2
+####################

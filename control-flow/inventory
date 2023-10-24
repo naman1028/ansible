@@ -1,0 +1,5 @@
+[database_dev]
+mngnode1.example.com
+
+[database_prod]
+mngnode2.example.com

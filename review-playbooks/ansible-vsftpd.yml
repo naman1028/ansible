@@ -1,0 +1,50 @@
+---
+- name: configure ftp server
+  hosts: ftpservers
+  vars_files:
+    - vars/vars.yml
+  tasks:
+  - name: package installation
+    yum:
+      name: 
+        - "{{ vsftpd_package }}"
+        - firewalld  
+      state: latest
+  
+  - name: pushing configuration
+    template:
+      src: vsftpd.conf.j2
+      dest: /etc/vsftpd/vsftpd.conf
+      owner: root
+      group: root
+      mode: 0644
+    notify: vsftpd restart   
+      
+  - name: service is running
+    service:
+      name: "{{ item }}"
+      state: started
+      enabled: true
+    loop:
+      - "{{ vsftpd_service }}"
+      - firewalld
+     
+  - name: passing ports thru firewalld
+    firewalld:
+      service: ftp
+      state: enabled
+      immediate: true
+      permanent: true
+      
+  - name: allow ftp port in range 21000-21020
+    firewalld:
+      port: 21000-21020/tcp
+      state: enabled
+      immediate: true
+      permanent: true
+   
+  handlers:
+  - name: vsftpd restart        
+    service:
+      name: "{{ vsftpd_service }}"
+      state: restarted 

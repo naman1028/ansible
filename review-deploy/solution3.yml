@@ -1,0 +1,22 @@
+---
+- name: Problem Case_3
+  hosts: mngnode1.example.com
+  become: true
+  remote_user: devops
+  tasks:
+  - name: performing patching and then reboot
+    debug:
+      msg: "{{ ansible_facts.fqdn }} = {{ ansible_facts.kernel }}"
+
+  - name: yum update
+    yum:
+      name: "*"
+      state: latest
+  
+  - name: reboot
+    reboot:
+      reboot_timeout: 180
+
+  - name : print msg again    
+    debug:
+      msg: "{{ ansible_facts.fqdn }} = {{ ansible_facts.kernel }}"

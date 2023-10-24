@@ -1,0 +1,39 @@
+---
+- name: Problem Case 2
+  hosts: dev
+  become: true
+  vars:
+    filea:
+      - /etc/hosts
+      - /etc/resolv.conf
+      -  /etc/motd
+      - /etc/ssh/sshd_config
+  remote_user: devops
+  tasks:
+  - name: adding a string BOF
+    lineinfile:
+      path: "{{ item }}"
+      line: '# Managed by Ansible'
+      insertbefore: BOF
+      state: present
+      backup: yes
+    loop: "{{ filea }}"
+    when: "'# Managed by Ansible' not in item"
+    notify:
+      -  restart sshd
+    
+
+  handlers:
+  - name: restart sshd
+    service:
+      name: sshd
+      state: restarted
+    register: out 
+    
+  - name: revert to file
+    copy:
+      src: "{{ out.backup_file }}"
+      dest: "{{ filea }}"
+      remote_src: yes
+    when: out.rc != 0 
+

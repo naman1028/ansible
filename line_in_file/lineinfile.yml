@@ -1,0 +1,14 @@
+---
+- name: testing lineinfile module
+  hosts: webserver
+  become: true
+  tasks:
+  - name: motd configure
+    lineinfile:
+      path: /etc/motd
+      regexp: '^System'
+      insertbefore: '^System'
+      line: dalue
+      state: present
+
+

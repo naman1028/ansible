@@ -1,0 +1,50 @@
+---
+- name: Implementing Handlers
+  hosts: webserver
+  become: true
+  vars_files:
+    httpd_vars.yml
+  tasks:
+  - name: install "{{ web_pkg }}"
+    yum:
+      name: "{{ web_pkg }}"
+      state: latest
+     
+  - name: listen port "{{ web_port }}" in httpd.conf
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      line: Listen "{{ web_port }}"
+      state: present
+    notify:
+      - httpd restart
+       
+        
+  - name: status en n st
+    service:
+      name: "{{ item }}"
+      enabled: true
+      state: started
+    loop: 
+      - "{{ web_svc }}"
+      - "{{ firewall_svc }}"  
+       
+  - name:  enable firewall port
+    firewalld:
+      port: "{{ web_port }}"
+      permanent: true
+      immediate: true
+      state: enabled
+   
+  - name: configure index.html
+    copy:
+      content: WEB Test successful
+      dest: /var/www/html/index.html
+
+    
+  handlers:
+  - name: httpd restart
+    service:
+      name: "{{ web_svc }}"
+      state: restarted
+
+ 

@@ -1,0 +1,6 @@
+2022-12-31 01:14:01,449 [ERROR] yum:8373:MainThread @identity.py:156 - Reload of consumer identity cert /etc/pki/consumer/cert.pem raised an exception with msg: [Errno 13] Permission denied: '/etc/pki/consumer/key.pem'
+2022-12-31 13:57:58,313 [ERROR] yum:1561:MainThread @identity.py:156 - Reload of consumer identity cert /etc/pki/consumer/cert.pem raised an exception with msg: [Errno 13] Permission denied: '/etc/pki/consumer/key.pem'
+2023-01-05 01:25:45,402 [ERROR] yum:6564:MainThread @identity.py:156 - Reload of consumer identity cert /etc/pki/consumer/cert.pem raised an exception with msg: [Errno 13] Permission denied: '/etc/pki/consumer/key.pem'
+2023-01-05 01:33:21,244 [ERROR] yum:9407:MainThread @identity.py:156 - Reload of consumer identity cert /etc/pki/consumer/cert.pem raised an exception with msg: [Errno 13] Permission denied: '/etc/pki/consumer/key.pem'
+2023-01-07 17:13:50,430 [ERROR] yum:2320:MainThread @identity.py:156 - Reload of consumer identity cert /etc/pki/consumer/cert.pem raised an exception with msg: [Errno 13] Permission denied: '/etc/pki/consumer/key.pem'
+2023-01-17 22:51:29,799 [ERROR] yum:1702:MainThread @identity.py:156 - Reload of consumer identity cert /etc/pki/consumer/cert.pem raised an exception with msg: [Errno 13] Permission denied: '/etc/pki/consumer/key.pem'

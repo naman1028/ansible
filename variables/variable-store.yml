@@ -1,0 +1,11 @@
+stat: present
+users:
+  user1:
+    user_name: kratos
+    user_id: 67789
+  user2:
+    user_name: zeus
+    user_id: 67790
+  user3:
+    user_name: prometheus
+    user_id: 67791

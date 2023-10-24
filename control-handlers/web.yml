@@ -1,0 +1,63 @@
+---
+- name: Implementing Handlers
+  hosts: webserver
+  become: true
+  vars_files:
+    httpd_vars.yml
+  tasks:
+  - name: install "{{ web_pkg }}"
+    yum:
+      name: "{{ web_pkg }}"
+      state: latest
+     
+  - name: listen port {{ web_port }} in httpd.conf
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      line: Listen {{ web_port }}
+      state: present
+    notify:
+      - httpd restart
+        
+  - name:  status en n st
+    service:
+      name: "{{ item }}"
+      enabled: true
+      state: started
+    loop: 
+      - "{{ web_svc }}"
+      - "{{ firewall_svc }}"  
+       
+  - name:  enable firewall port
+    firewalld:
+      port: "{{ web_port }}/tcp"
+      permanent: true
+      immediate: true
+      state: enabled
+   
+  - name: configure index.html
+    copy:
+      dest: /var/www/html/index.html
+      content: |
+        WEB Test successful
+     
+           
+  handlers:
+  - name: httpd restart
+    service:
+      name: "{{ web_svc }}"
+      state: restarted
+    
+  - name: selinux port pass
+    command: semanage port -a -t http_port_t -p tcp {{ web_port }}
+
+
+
+
+- name: Implementing Handlers
+  hosts: localhost
+  tasks:
+  - name: http health check
+    uri:
+      url: http://mngnode1/index.html
+      status_code: 200
+      return_content: true

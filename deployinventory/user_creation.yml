@@ -1,0 +1,11 @@
+---
+- name: User Creation
+  hosts: Delhi
+  tasks:
+  - name: user troy created
+    user:
+      name: troy
+      uid: 7890
+      state: present
+
+...

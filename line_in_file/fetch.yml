@@ -1,0 +1,9 @@
+---
+- name:  testing fetch module
+  hosts: all
+  become: true
+  tasks:
+  - name: fetching file
+    fetch:
+      src: /etc/motd
+      dest: fil/

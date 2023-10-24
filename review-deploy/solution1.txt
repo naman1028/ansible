@@ -1,0 +1,6 @@
+
+ $ ansible dev -m copy -a 'dest=/etc/motd content="Managed by Ansible\n" force=yes' -u devops --become -vvv
+
+
+$ ansible dev -m command -a 'cat /etc/motd' -u devops --become
+

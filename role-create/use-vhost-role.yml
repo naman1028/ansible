@@ -1,0 +1,19 @@
+---
+- name: roles exercise
+  hosts: servers
+  become: true
+  pre_tasks: 
+  - name: debug1
+    debug:
+      msg: HTTP configuration started
+
+  roles:
+  - myvhost
+   
+  post_tasks:
+  - name: post debug2
+    debug:
+      msg: httpd configuration completed
+
+  
+     

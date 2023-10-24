@@ -1,0 +1,52 @@
+---
+- name: Apache Tasks structure
+  hosts: web
+  become: true
+  vars:
+    web_pkg: httpd
+    firewall_pkg: firewalld
+    web_service: httpd
+    firewall_service: firewalld
+    python_pkg: python3-PyMySQL
+    rule: http
+    tasks:
+    - name: check wheather latest pkges are installed
+      yum:
+        name:
+          - "{{ web_pkg }}"
+          - "{{ firewall_pkg }}"
+        state: latest
+    
+    - name: httpd is started and enabled
+      service:
+        name:  "{{ web_service }}"
+        enabled: true
+        state: started
+    
+    - name: firewalld is started and enabled
+      service:
+        name: "{{ firewall_service }}"
+        enabled: true
+        state: started
+      
+    - name:  copying contents
+      copy:
+        src: ./index.html
+        dest: /var/www/html/index.html
+      
+    - name: http port is open
+      firewalld:
+        service: "{{ rule }}"
+        immediate: true
+        permanent: true
+        state: enabled
+
+- name: url testing
+  hosts: localhost
+  become: false
+  tasks:
+  - name: url check
+    uri:
+      url: http://mngnode1.example.com  
+      return_content: yes
+      status_code: 200

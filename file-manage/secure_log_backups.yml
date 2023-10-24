@@ -1,0 +1,9 @@
+---
+- name: retrieve a file
+  hosts: web
+  tasks:
+  - name: fetch  module prac
+    fetch:
+      src: /var/log/secure
+      dest: secure-backups
+      flat: no

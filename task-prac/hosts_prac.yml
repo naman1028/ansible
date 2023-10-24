@@ -1,0 +1,14 @@
+---
+- name: hosts configuration
+  hosts: all
+  become: true
+  pre_tasks:
+    debug:
+      msg: Configuring /etc/hosts
+
+  roles:
+  - hostupdate
+
+  post_tasks:
+    debug:
+      msg: Configuration done

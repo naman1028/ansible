@@ -1,0 +1,19 @@
+---
+- name: template testing
+  hosts: all
+  vars:
+    colours:
+      - white
+      - black
+      - pink
+      - grey
+      - red
+  tasks:   
+  - name: looping in template
+    template:
+      src: jinja2-syntax.j2
+      dest: /tmp/template.conf
+      owner: root
+      group: root
+      mode: 0640
+      

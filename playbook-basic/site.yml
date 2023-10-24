@@ -1,0 +1,18 @@
+---
+- name: set of tasks
+  hosts: web
+  tasks:
+  - name : httpd packag
+    yum:
+      name: httpd
+      state: present
+  - name: copy file
+    copy:
+      src: /home/student/playbook-basic/files/index.html
+      dest: /var/www/html/index.html
+  - name: start n enable
+    service:
+      name: httpd
+      enabled: true
+      state: started
+...

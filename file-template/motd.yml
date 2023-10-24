@@ -1,0 +1,14 @@
+---
+- name: Message of the day
+  hosts: all
+  become: true
+  vars:
+    system_owner: root
+  tasks:
+  - name: sharing template
+    template:
+      src: /home/student/file-template/motd.j2
+      dest: /etc/motd
+      owner: root
+      group: root
+      mode: 0644

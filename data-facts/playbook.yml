@@ -1,0 +1,15 @@
+---
+- name: Install  apache using facts
+  hosts: webserver
+  become: true
+  tasks:
+  - name: install httpd
+    yum:
+      name: "{{ ansible_facts.ansible_local.custom.general.package }}"
+      state: latest
+    
+  - name: start n enable httpd
+    service:
+      name:  "{{ ansible_facts.ansible_local.custom.general.service }}"
+      enabled: "{{ ansible_facts.ansible_local.custom.general.enabled }}"
+      state: "{{ ansible_facts.ansible_local.custom.general.state }}"

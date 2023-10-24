@@ -1,0 +1,9 @@
+---
+- name: policycore utils pkg check
+  hosts: all
+  become: true
+  tasks:
+  - name: using yum
+    yum:
+      name: policycoreutils-python-utils
+      state: present

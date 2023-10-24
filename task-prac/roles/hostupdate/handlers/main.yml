@@ -1,0 +1,7 @@
+---
+# handlers file for hostupdate
+- name: NetworkManager restart
+  service:
+    name: NetworkManager
+    state: restarted
+

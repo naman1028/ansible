@@ -1,0 +1,9 @@
+
+timesync_ntp_servers:
+  - hostname: mngnode1.example.com 
+    iburst: yes
+                 
+  - hostname: mngnode22example.com 
+    iburst: yes
+timesync_ntp_provider: chrony
+host_timezone: Asia/Kolkata

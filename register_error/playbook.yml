@@ -1,0 +1,13 @@
+---
+- name: Handling register_2
+  hosts: databases
+  tasks:
+  - name: date cmd 
+    command: date
+    register: command_result
+    changed_when: false
+   
+  - name: print the  stdout of first cmd
+    debug:
+      var: command_result.stdout 
+

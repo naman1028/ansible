@@ -1,0 +1,43 @@
+---
+- name: lvm automation
+  hosts: all
+  become: true
+  tasks:
+  - name: creating a partition
+    parted:
+      device: /dev/sdc
+      number: 1
+      flags: [ lvm ]
+      state: present
+      part_end: 1GiB
+      
+  - name: creating a volume group using lvg module
+    lvg:
+      vg: vgstorex
+      pvs: /dev/sdc1
+      pesize: 32
+    
+  - name: creating a logical volume using lvol module
+    lvol:
+      vg: vgstorex
+      lv: lvstore1
+      size: 500m
+      force: yes
+      
+  - name: format logical volume with filestystem module
+    filesystem:
+      dev: /dev/vgstorex/lvstore1
+      fstype: xfs
+
+  - name: create a directory to mount
+    file:
+      path: /new
+      state: directory    
+              
+  - name: mounting filesystem on new dir
+    mount:
+      src: /dev/vgstorex/lvstore1
+      path: /new
+      opts: noatime
+      state: mounted 
+      fstype: xfs

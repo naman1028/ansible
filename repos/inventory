@@ -1,0 +1,4 @@
+[server]
+mngnode1.example.com
+[client]
+mngnode2.example.com

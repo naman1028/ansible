@@ -1,0 +1,12 @@
+---
+- name:  ssh key push
+  hosts: web
+  become: true
+  tasks:
+  - name: add pub key fileee
+    authorized_key:
+      user: devops
+      state: present
+      key: '{{ item }}'
+    with_file:
+        - ~/.ssh/id_rsa.pub 

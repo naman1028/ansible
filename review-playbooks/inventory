@@ -1,0 +1,4 @@
+[ftpservers]
+mngnode1.example.com
+[ftpclients]
+mngnode2.example.com

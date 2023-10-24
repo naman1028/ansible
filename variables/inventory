@@ -1,0 +1,12 @@
+localhost
+[servers]
+mngnode1.example.com  user=tan
+mngnode2.example.com
+
+
+[servers:vars]
+user=joe
+
+
+
+

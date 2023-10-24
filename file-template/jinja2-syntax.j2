@@ -1,0 +1,13 @@
+
+
+{{ ansible_facts['hostname']   }}
+
+
+
+{% for i in colours if not i == 'white' %}
+
+Colour count {{ loop.index }} -  {{ i }}
+{% endfor %}
+
+
+

@@ -1,0 +1,4 @@
+web_pkg: httpd
+web_port: 80
+web_svc: httpd
+firewall_svc: firewalld

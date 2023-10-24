@@ -1,0 +1,46 @@
+---
+- name: multi playbook
+  hosts: web
+  become: true
+  tasks:
+  - name: http is present
+    yum:
+      name:
+        - httpd
+        - firewalld
+      state: present
+  
+  - name: firewall is running
+    service:
+      name: firewalld
+      enabled: True
+      state: started
+      
+  - name: http port is allowed
+    firewalld:
+      port: 80/tcp
+      permanent: True      
+      immediate: yes
+      state: enabled
+   
+  - name: copy to all
+    copy:
+      src: files/index.html
+      dest: /var/www/html
+     
+  - name: http service is started and enabled
+    service:
+      name: firewalld
+      state: started
+      enabled: True
+       
+- name: test weburl
+  hosts: localhost
+  become: false
+  tasks:
+  - name: test url using uri
+    uri:
+      url: http://mngnode1.example.com/index.html
+      return_content: yes
+      status_code: 200 
+... 

@@ -1,0 +1,22 @@
+---
+- name: Installing Mariadb  and ensure it's running
+  hosts: database_prod
+  become: true
+  vars:
+    mariadb_packages:
+      - mariadb-server
+      - python3-PyMySQL
+   
+  tasks: 
+  - name: install mariadb
+    yum:
+      name: "{{ item }}"
+      state: latest
+    loop: "{{ mariadb_packages }}"
+    when: ansible_distribution == "RedHat"
+     
+  - name: start mariadb
+    service:
+      name: mariadb
+      enabled: true
+      state: started

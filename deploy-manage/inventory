@@ -1,0 +1,12 @@
+[myself]
+localhost
+
+[intranetweb]
+mngnode1.example.com
+
+[internetweb]
+mngnode2.example.com
+
+[web:children]
+intranetweb
+internetweb

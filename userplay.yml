@@ -1,0 +1,17 @@
+---
+- name: setup a devops user
+  hosts: all
+  become: true
+  tasks:
+    - name: create devops user
+      user:
+        name: devops
+        password: "{{ 'redhat' | password_hash('sha512') }}"
+        uid: 1010
+        state: present
+    - name: Add sudo rights
+      lineinfile:
+        path: /etc/sudoers.d/student
+        line: "devops ALL=(ALL) NOPASSWD: ALL"
+        state: present
+...

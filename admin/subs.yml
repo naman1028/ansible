@@ -1,0 +1,10 @@
+---
+- name: register and subscribe
+  hosts: all
+  vars_files:
+    - new.yml
+  redhat_subscription:
+    username: "{{ user }}"
+    password: "{{ pass }}"
+    pool_ids: 2c942ea4853696b101853d45a35256b4
+    state: present 

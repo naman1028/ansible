@@ -1,0 +1,15 @@
+---
+- name: user creation
+  hosts: devservers
+  become: true
+  vars_files:
+    secret.yml
+  tasks:
+  - name: user to be  created
+    user:
+      name: "{{ username }}"
+      uid: 8909
+      password: "{{ userpassword | password_hash('sha512') }}"
+      state: present
+
+...

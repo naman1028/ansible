@@ -1,0 +1,10 @@
+---
+- name: Configure important user
+  hosts: all
+  tasks:
+  - name: Newbie id is 4040
+    user:
+      name: newbie
+      uid: 4040
+      state: present
+...

@@ -1,0 +1,35 @@
+---
+- name: testing purpose only
+  hosts: all
+  become: true
+  tasks:
+  - name: Building template 
+    block:
+    - name: delivering template 
+      template:
+        src: ./hosts.j2
+        dest: /etc/hosts
+        owner: root
+        group: root
+        mode: 0644
+        backup: yes
+      register: output
+      notify: NetworkManager restart
+
+    rescue: 
+    - name: revert to old file
+      copy:
+        src: "{{ output.backup_file }}"
+        dest: /etc/hosts
+        remote_src: yes
+    always:
+    - name: reload NetworkManager
+      service:
+        name: NetworkManager
+        state: reloaded
+
+  handlers:
+  - name: NetworkManager restart
+    service:
+      name: NetworkManager
+      state: restarted

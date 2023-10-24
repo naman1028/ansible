@@ -1,0 +1,30 @@
+---
+- name: remove a line
+  hosts: all
+  become: true
+  remote_user: devops
+  vars:
+    filea:
+      - /etc/hosts
+      - /etc/resolv.conf
+      -  /etc/motd
+      - /etc/ssh/sshd_config
+  tasks:
+  - name: real task        
+    lineinfile:
+      path: "{{ item }}"
+      #  regexp: '^# Managed by Ansible'
+      regexp: '^\n'
+      state: absent
+    loop: "{{ filea }}"  
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

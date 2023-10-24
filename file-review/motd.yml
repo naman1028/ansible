@@ -1,0 +1,40 @@
+---
+- name: motdconfigurato
+  hosts: servers
+  become: true
+  tasks:
+  - name: template mapping
+    template:
+      src: /home/student/file-review/motd.j2
+      dest: /etc/motd
+      owner: root
+      group: root
+      mode: 0644
+  
+  - name: check status of file
+    stat: 
+      path: /etc/motd
+    register: p
+   
+  - name: debug
+    debug:
+      var:  p
+   
+  - name: copying issue
+    copy:
+      src: files/issue
+      dest: /etc/issue
+      owner: root
+      group: root
+      mode: 0644
+     
+  - name: making a symbolic link
+    file:
+      src: /etc/issue
+      dest: /etc/issue.net
+      state: link
+      owner: root
+      group: root
+      force: yes
+
+         

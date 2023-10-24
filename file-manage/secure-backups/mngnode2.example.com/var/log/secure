@@ -1,0 +1,13 @@
+Jan 10 16:41:39 mngnode2 polkitd[971]: Loading rules from directory /etc/polkit-1/rules.d
+Jan 10 16:41:39 mngnode2 polkitd[971]: Loading rules from directory /usr/share/polkit-1/rules.d
+Jan 10 16:41:39 mngnode2 polkitd[971]: Finished loading, compiling and executing 2 rules
+Jan 10 16:41:39 mngnode2 polkitd[971]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+Jan 10 16:41:45 mngnode2 sshd[1079]: Server listening on 0.0.0.0 port 22.
+Jan 10 16:41:45 mngnode2 sshd[1079]: Server listening on :: port 22.
+Jan 10 17:39:06 mngnode2 sshd[1508]: Accepted publickey for student from 192.168.253.156 port 57464 ssh2: RSA SHA256:PSUigRRJ/1cA1C528lyzRzHf9QV7Q9rjtwFfM4AjObg
+Jan 10 17:39:06 mngnode2 systemd[1518]: pam_unix(systemd-user:session): session opened for user student by (uid=0)
+Jan 10 17:39:06 mngnode2 sshd[1508]: pam_unix(sshd:session): session opened for user student by (uid=0)
+Jan 10 17:39:09 mngnode2 sudo[1663]: student : TTY=pts/0 ; PWD=/home/student ; USER=root ; COMMAND=/bin/sh -c echo BECOME-SUCCESS-yckljojkerfipxvexpvrqlidepceyppu ; /usr/libexec/platform-python /home/student/.ansible/tmp/ansible-tmp-1673352546.550573-1764-237058455264460/AnsiballZ_setup.py
+Jan 10 17:39:09 mngnode2 sudo[1663]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Jan 10 17:39:09 mngnode2 sudo[1663]: pam_unix(sudo:session): session opened for user root by student(uid=0)
+Jan 10 17:39:10 mngnode2 sudo[1663]: pam_unix(sudo:session): session closed for user root

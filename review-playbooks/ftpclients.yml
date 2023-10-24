@@ -1,0 +1,8 @@
+---
+- name: lftp installation
+  hosts: ftpclients
+  tasks:
+  - name: lftp installed
+    yum:
+      name: lftp
+      state: latest
